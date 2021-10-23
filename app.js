@@ -18,7 +18,15 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("home", { homeStartingContent, posts });
+});
 
+app.get("/posts/:postName", (req, res) => {
+  posts.forEach((post) => {
+    if (post.title === req.params.postName) {
+      console.log("Matches found");
+    }
+  });
+  //console.log(req.params.postName);
 });
 
 app.get("/about", (req, res) => {
