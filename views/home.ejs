@@ -2,9 +2,9 @@
   <h1>Home</h1>
   <p> <%= homeStartingContent %> </p>
 
-  <% posts.forEach((e) => { %>
-    <h2> <%= e.title %> </h2>
-    <p> <%= e.body %> </p>
+  <% posts.forEach((post) => { %>
+    <h2> <%= post.title %> </h2>
+    <p> <%= post.body.substring(0, 100) + " ..." %> </p>
   <% }); %>
   
 <%- include('partials/footer'); -%>
