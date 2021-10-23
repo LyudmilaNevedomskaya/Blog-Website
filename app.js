@@ -25,14 +25,16 @@ app.get("/posts/:postName", (req, res) => {
   const reqTitle = _.lowerCase(req.params.postName);
 
   posts.forEach((post) => {
-    const postTitle = _.lowerCase(post.title)
+    const postTitle = _.lowerCase(post.title);
+    const postBody = post.body;
+
     if (postTitle === reqTitle) {
-      console.log("Matches found");
-    } else {
-      console.log("Not a Match");
+      res.render("post", {
+        postTitle: post.title,
+        postBody: post.body
+      });
     }
   });
-  //console.log(req.params.postName);
 });
 
 app.get("/about", (req, res) => {
