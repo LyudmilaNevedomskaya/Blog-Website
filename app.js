@@ -13,7 +13,8 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/blogpostsDB");
+//mongoose.connect("mongodb://localhost:27017/blogpostsDB");
+mongoose.connect("mongodb+srv://admin-lyudmila:Yarik2014@cluster0.oqamm.mongodb.net/blogpostsBD")
 
 const blogPostSchema = new mongoose.Schema({
   title: String,
@@ -44,18 +45,6 @@ app.get("/posts/:postId", (req, res) => {
       res.render("post", {postTitle: foundPost.title, postBody: foundPost.content})
     }
   })
-
-  // posts.forEach((post) => {
-  //   const postTitle = _.lowerCase(post.title);
-  //   const postBody = post.body;
-
-  //   if (postTitle === reqTitle) {
-  //     res.render("post", {
-  //       postTitle: post.title,
-  //       postBody: post.body
-  //     });
-  //   }
-  // });
 });
 
 app.get("/about", (req, res) => {
