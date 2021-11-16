@@ -35,20 +35,27 @@ app.get("/", (req, res) => {
   })
 });
 
-app.get("/posts/:postName", (req, res) => {
-  const reqTitle = _.lowerCase(req.params.postName);
+app.get("/posts/:postId", (req, res) => {
+  const reqTitle = req.params.postId;
+  //console.log(reqTitle);
 
-  posts.forEach((post) => {
-    const postTitle = _.lowerCase(post.title);
-    const postBody = post.body;
-
-    if (postTitle === reqTitle) {
-      res.render("post", {
-        postTitle: post.title,
-        postBody: post.body
-      });
+  BlogPost.findOne({_id: reqTitle}, function(err, foundPost) {
+    if (!err) {
+      res.render("post", {postTitle: foundPost.title, postBody: foundPost.content})
     }
-  });
+  })
+
+  // posts.forEach((post) => {
+  //   const postTitle = _.lowerCase(post.title);
+  //   const postBody = post.body;
+
+  //   if (postTitle === reqTitle) {
+  //     res.render("post", {
+  //       postTitle: post.title,
+  //       postBody: post.body
+  //     });
+  //   }
+  // });
 });
 
 app.get("/about", (req, res) => {
